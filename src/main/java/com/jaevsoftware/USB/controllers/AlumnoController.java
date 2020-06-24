@@ -91,7 +91,7 @@ public class AlumnoController {
         return "/alumno/listar";
     }
 
-    @Secured({"ROLE_JEFE", "ROLE_ALUMNO"})
+    @Secured({"ROLE_JEFE", "ROLE_ALUMNO","ROLE_SECRETARIA"})
     @GetMapping("/ver/{numeroDeControl}")
     public String ver(@PathVariable("numeroDeControl") String numeroDeControl, Model model, RedirectAttributes flash) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
