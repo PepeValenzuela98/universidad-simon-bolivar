@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class="dataProfileContainer">
+                        <div class="imageProfile">
+                            <img loading="lazy" alt="IMAGEN NO DISPONIBLE" th:src="@{/img/userdefaultimage.png}" class="imageProfile"/>
+                        </div>
+                        <div>
+                            <h2>Numero de control:</h2>
+                            <h3 th:text="${docente.numeroDeControl}"></h3>
+                        </div>
+                        <div>
+                            <h2>Nombre:</h2>
+                            <h3 th:text="${docente.nombre} + ' ' + ${docente.apellido}"></h3>
+                        </div>
+                        <div>
+                            <h2>Telefono:</h2>
+                            <h3 th:text="${docente.telefono}"></h3>
+                        </div>
+                        <div>
+                            <h2>Correo electronico:</h2>
+                            <h3 th:text="${docente.correoElectronico}"></h3>
+                        </div>
+                    </div>
+                    <div class="extraDataProfileContainer" sec:authorize="hasRole('ROLE_JEFE')">
+                        <a href="#">Cambiar contraseña</a>
+                        <a class="generatePDFProfile" href="#">PDF </a>
+                    </div>
+                </div>
+            </div>
+            <div class="showHorario">
+                <h1 th:if="${#lists.isEmpty(gruposDocente)}">No hay grupos asignados</h1>
+                <div style="overflow-x:auto;" th:if="${not #lists.isEmpty(gruposDocente)}">
+                    <h1>Horario:</h1>    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Grupo</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miercoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="grupoDocente : ${gruposDocente}">
+                                <td><a class="buttonEntity buttonEntityinfo" th:href="@{'/grupos/ver/' + ${grupoDocente.codigoGrupo}}"th:text="${grupoDocente.materia.nombre}"></a></td>
+                                <td th:text="${grupoDocente.numeroGrupo}"></td>
+                                <td th:each="horario : ${grupoDocente.horariosDeGrupo}" th:text="${not #strings.isEmpty(horario.horaInicia) ? horario.horaInicia + ' - ' + horario.horaFinal + ' : ' + horario.salon : ''}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

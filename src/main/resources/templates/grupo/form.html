@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <form class="grupoForm" method="post" th:action="@{/grupos/form}" th:object="${horariosGrupo}" id="grupoForm">
+                        <input type='hidden' th:value="${grupo.codigoGrupo}" name='codigoGrupo'>
+                        <div class="seleccionarMateriaContainer" >
+                            <h2>Materia:</h2>
+                            <input th:value="${materia.nombre}" name="nombreMateria" autocomplete="off" type="text" id="seleccionarMateria">
+                            <input th:value="${materia.codigoMateria}" type="hidden" name="codigoMateria" id="seleccionarCodigoMateria">
+                            <div id="nombresDeMateria" class="nombresDeMateria"></div>
+                        </div>
+                        <div class="seleccionarDocenteContainer" >
+                            <h2>Docentes:</h2>
+                            <div class="seleccionarDocente" th:each="docente : ${docentes}">
+                                <input th:checked="${docente.numeroDeControl.equals(docenteSelected)? 'true' : 'false'}" type="radio" name="numeroControlDocente" th:value="${docente.numeroDeControl}">
+                                <label th:for="${docente.numeroDeControl}" th:text="${docente.numeroDeControl} + ' - ' + ${docente.nombre} + ' ' + ${docente.apellido}"></label>
+                            </div>
+                        </div>
+                        <div class="horarioGrupo">
+                            <h2>Horario:</h2>
+                            <table class="horarioGrupoTable">
+                                <thead>
+                                    <tr>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miercoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="tableRowBodyHorarioGrupo" th:each="hora, itemStat: *{horarios}">
+                                            <div>
+                                                <label>Seleccione la hora inicial:</label>
+                                                <input th:field="*{horarios[__${itemStat.index}__].horaInicio}" type="time" placeholder="Seleccione la hora inicial:" min="07:00" max="21:00" step="3600000">
+                                            </div>
+
+                                            <div>
+                                                <label>Seleccione la hora fin:</label>
+                                                <input th:field="*{horarios[__${itemStat.index}__].horaFin}" type="time" placeholder="Seleccione la hora fin:" min="07:00" max="21:00" step="3600000">
+                                            </div>
+
+                                            <div>
+                                                <label>Seleccione el salon:</label>
+                                                <input th:field="*{horarios[__${itemStat.index}__].salon}" type="text" name="salon[]">
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="saveGrupoHorario">
+                            <input id="saveGrupoHorario" type="button" value="Guardar" >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+            <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

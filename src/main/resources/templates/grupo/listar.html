@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+                <link rel="stylesheet" type="text/css" th:href="@{/css/stylesPaginator.css}"/>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class="añadir">
+                        <a th:href="@{/grupos/form}"><img loading="lazy" th:src="@{/img/addgroup.png}"/>Añadir grupo</a>
+                    </div>
+                    <div class="filterHeader" id="filterHeader">
+                        <img loading="lazy" class="filterIcon" th:src="@{/img/filter.png}"/>
+                        <span>Filtrar</span>
+                        <img loading="lazy" class="arrowFilterIcon" id="arrowFilterIcon" src="https://img.icons8.com/ios-filled/50/000000/down-squared--v1.png"/>
+                    </div>
+                    <div class="filterContainer">
+                        <form class="filterFormHide" id="filterForm" th:object="${grupoFiltro}" th:action="@{/grupos/filtro/}" method="get">
+                            <label for="numerodecontrolFilter" >Codigo grupo:</label>
+                            <input type="text" name="numeroControlFilterValue" th:field="*{codigoGrupo}">
+                            <input type="submit" value="Filtrar">
+                            <a th:if="${not #strings.isEmpty(grupoFiltro.codigoGrupo)}" th:href="@{/grupos/listar}">Quitar filtro</a>
+                        </form>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Codigo materia</th>
+                                    <th>Materia</th>
+                                    <th>Semestre</th>
+                                    <th>Docente</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="grupo : ${grupos}">
+                                    <td><a class="buttonEntity buttonEntityinfo" th:href="@{'/grupos/ver/' + ${grupo.codigoGrupo}}" th:text="${grupo.codigoGrupo}"></a></td> 
+                                    <td th:text="${grupo.materia.nombre}"></td>
+                                    <td th:text="${grupo.materia.semestre}"></td>
+                                    <td th:text="${grupo.docente.nombre}+' '+${grupo.docente.apellido}" id="telefono"></td> 
+                                    <td><a class="buttonEntity buttonEntityedit" th:href="@{'/grupos/form/' + ${grupo.codigoGrupo}}">Editar</a></td> 
+                                    <td><a  class="buttonEntity buttonEntitydelete" th:href="@{'/grupos/eliminar/' + ${grupo.codigoGrupo}}">Eliminar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <nav  th:replace="layout/nav-paginator :: paginator"></nav>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

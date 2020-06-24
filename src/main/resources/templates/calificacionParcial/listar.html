@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <form style="overflow-x: auto" th:action="@{/calificacionesParciales/save}" method="post" th:object="${calificacionParcial}" id="formCalificaciones">
+                        <input  type="hidden" name="codigoGrupo" th:value="${grupo.codigoGrupo}">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Numero de control</th>
+                                    <th>Nombre</th>
+                                    <th th:each="unidad : ${#numbers.sequence(1,grupo.materia.numeroUnidades,1)}" th:text="'Unidad ' + ${unidad}"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="calificacionAlumno,iterator : *{calificaciones}">
+                                    <td><div th:text="${calificacionAlumno.numeroDeControlAlumno}"></div><input type="hidden" th:field="*{calificaciones[__${iterator.index}__].numeroDeControlAlumno}" th:value="${calificacionAlumno.numeroDeControlAlumno}"/></td>
+                                    <td><div th:text="${calificacionAlumno.nombreAlumno}"></div><input type="hidden" th:field="*{calificaciones[__${iterator.index}__].nombreAlumno}" th:value="${calificacionAlumno.nombreAlumno}"/></td>
+                                    <td th:each="calificacionData,iterator1 : ${calificacionAlumno.calificacionesPorUnidad}"><input th:field="*{calificaciones[__${iterator.index}__].calificacionesPorUnidad[__${iterator1.index}__].calificacion}" type="number" min="0" max="100" th:value="${calificacionData.calificacion}" class="calificacion"/><input th:field="*{calificaciones[__${iterator.index}__].calificacionesPorUnidad[__${iterator1.index}__].unidad}" type="hidden" th:value="${calificacionData.unidad}"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <small class="errorField" id="errorField"></small>
+
+                        <div class="saveCalificaciones">
+                            <input id="saveCalificaciones" type="button" value="Guardar" >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body> 
+</html>

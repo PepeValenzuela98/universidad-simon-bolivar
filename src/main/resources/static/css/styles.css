@@ -1,0 +1,1539 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+@font-face {
+    font-family: Swis721 BT;
+    src: url(../font/Swis721_BT_Bold.ttf);
+}
+
+body{
+    position: relative;
+    padding-bottom: 58px;
+    min-height: 100vh;
+    font-family: 'Ubuntu';
+
+}
+/*Header*/
+header{
+    top:0;
+    position: sticky;
+    width: 100%;
+    background-color: #F5F5F5;
+    box-shadow: 0px 5px 5px 0px #ccc;
+    margin: 0;
+    left: 0;
+    z-index: 10;
+    font-family: Swis721 BT;
+}
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+}
+header .menuMobile{
+    display: none;
+}
+header .menuMobile .imgmenuMobile{
+    width: 45px;
+    height: 45px;
+}
+
+header .menuMobile .imgmenuMobile:hover{
+    cursor: pointer;
+}
+
+header ul{
+    font-family: Swis721 BT;
+    font-size: 14px;
+    color: #A21E1E;
+    font-weight: bold;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+    flex-grow: 3;
+}
+
+header ul > li{
+    margin: 0 25px;
+}
+header ul li{
+    list-style-type: none;
+}
+
+header ul li  a:not(.buttonLoginText):not(.generarLink):not(.linkInfoUser){
+    color: #A21E1E;
+    text-shadow: 0px 12px 16px black;
+}
+
+header ul li a:not(.buttonLoginText):hover{
+    color:#DA3434;
+}
+
+header ul li a{
+    text-decoration: none;
+}
+
+.generarLink{
+    text-decoration: none;
+    color: #A21E1E;
+    font-size: 15px;
+}
+
+.linkInfoUser{
+    text-decoration: none;
+    color: #A21E1E;
+    font-size: 15px;
+}
+header img{
+    width: 150px;
+    height: 150px;
+}
+
+header .logo{
+    flex-grow: 2;
+}
+
+header .verticalLineHeader{
+    background-color: #A21E1E;
+    height: 5em;
+    width: 2px;
+}
+
+header .buttonLogin{
+
+}
+
+.buttonLoginText{
+    font-family: Swis721 BT;
+    font-weight: bold;
+    font-size: 18px;
+    color:black;
+    text-shadow: none;
+    border: 0;
+    background-color: #E2CFAF;
+    overflow-wrap: break-word;
+    padding: 15px;
+    border-radius: 50px;
+    font-family: Swis721 BT;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0px 5px 5px 0px #ccc;
+}
+
+.buttonLoginText:hover{
+    cursor: pointer;
+    background-color: #D8BD92;
+}
+
+.alert{
+    width: 100%;
+    color:white;
+    padding: 10px;
+    position: relative;
+}
+
+.alert-success{
+    background: #28A745;
+}
+
+.alert-danger{
+    background-color: #DC3545;
+}
+
+.alert-warning{
+    background-color: #FFC107;
+}
+
+.alert-info{
+    background-color: #007BFF;
+}
+
+.generar:hover{
+    cursor: pointer;
+}
+
+.generarContentOut{
+    display: none;
+}
+.generarContentEnter{
+    position: absolute;
+    background: white;
+    padding: 0;
+    border: 1px solid black;
+    width: auto;
+}
+
+.generarContentEnter ul{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    
+}
+
+
+@media only screen and (max-width: 900px) {
+
+    header .headerContainer{
+        display: grid;
+        grid-template-areas: "logo  menumobile" 
+            "opciones opciones";
+    }
+
+    header .menuMobile{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 5px;
+        grid-area: menumobile;
+    }
+
+    header .menuMobile:hover{
+        filter: invert(30%);
+    }
+
+
+
+    header .logo{
+        grid-area: logo;
+    }
+
+    header .logo img{
+        height: 80px;
+
+    }
+
+
+
+
+    header ul li a:not(.buttonLogin){
+        text-shadow: 0px 0px 0px black;
+    }
+
+    .buttonLogin{
+        margin-bottom: 20px;
+    }
+
+    .slideUp {
+        display: none;
+    }
+
+    .slideDown {
+        margin-top: 5px;
+        grid-area: opciones;
+        display: grid;
+        grid-gap: 20px;
+        text-shadow: 0px 0px 0px black;
+        padding-top: 15px;
+        border-top: 0.1px solid gray;
+        padding-left: 15px;
+        width: 100%;
+    }
+
+
+    header ul .verticalChildHeader{
+    }
+    header ul .verticalLineHeader{
+        display: none;
+    }
+}
+/*Footer*/
+footer{
+    background: #DAC9AC;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-left: 25px;
+}
+
+footer .footerContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.contacto{
+    font-family: Segoe UI;
+    margin-right: 15px;
+}
+
+.contacto h2{
+    color:#A21E1E;
+    font-size: 18px;
+}
+.contacto li{
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 9px;
+}
+.contacto img{
+    height: 9px;
+    width: 9px;
+}
+
+.verticalLineFooter{
+    background-color: white;
+    height: 4em;
+    width: 2px;
+    margin-right: 15px;
+}
+
+.siguenos{
+    font-family: Segoe UI;
+    color:#A21E1E;
+}
+
+.siguenos h2{
+    font-size: 18px;
+    top:0;
+    position: absolute;
+
+}
+
+.siguenos ul{
+    display: flex;
+    flex-direction: row;
+    margin-right: 25px;
+}
+
+.siguenos li{
+    list-style-type: none;
+}
+
+.siguenos img{
+    margin-top: 25px;
+    width: 32px;
+    height: 32px;
+}
+/*Content*/
+.content{
+    width: 100% ;
+    margin: 10px auto;
+    padding-bottom: 30px;
+}
+
+/*Carrousel*/
+.uploadFotoCarrousel input[type="file"] {
+    display: none;
+}
+
+.imageHandler{
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.imageHandler form{
+    margin-right: 5px;
+}
+
+.uploadFotoCarrousel{
+    background: #206AE6;
+    border-radius: 35px;
+    color: #ffffff;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    padding: 5px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.uploadFotoCarrousel:hover{
+    background: #165ACB;
+    cursor: pointer;
+}
+.uploadFotoCarrousel img{
+    width: 14px;
+    height: 14px;
+}
+
+.deleteFotoCarrousel{
+    background: #DC3545;
+    border-radius: 35px;
+    border-style: none;
+    color: #ffffff;
+    width: 20px;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    padding: 5px;
+    font-weight: bold;
+    text-align: center; 
+
+}
+
+.deleteFotoCarrousel:hover{
+    background: #d62537;
+    cursor: pointer;
+}
+
+.carrousel{
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    position: relative;
+}
+
+.carrousel img[name = "carrouselImage"]{
+    max-height: 400px;
+
+    width: 100%;
+    height: auto;
+}
+
+.activeimgCarrousel {
+    animation: fadeIn ease 1.5s;
+}
+@keyframes fadeIn {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+.carrousel .disableimgCarrousel{
+    display: none;
+    opacity: 0;
+}
+
+.carrousel .buttonsCarrousel{
+    position: absolute; 
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+    bottom:10px;
+}
+
+.carrousel .buttonsCarrousel div{
+    border: solid 3px;
+    background: #ffffff;
+    -webkit-box-shadow: inset 0px -2px 3px rgba(100,100,100,0.5);
+    -moz-box-shadow: inset 0px -2px 3px rgba(100,100,100,0.5);
+    box-shadow: inset 0px -2px 3px rgba(100,100,100,0.5);
+    z-index: 3;
+    width: 50px;
+    height:  9px;
+    margin-right: 5px;
+}
+
+.carrousel .buttonsCarrousel div:hover{
+    box-shadow: -1px 2px 7px 6px rgba(255,254,254,0.5);
+    cursor: pointer;
+}
+
+/*Carreras*/
+.carreras{
+    margin-top:20px;
+    margin-bottom:20px;
+    display: grid;
+    grid-template-areas: "industrial mecatronica sistemas"
+
+        "turismo psicopedagogia mercadotecnia";
+    width: 100%;
+    grid-row-gap: 50px;
+    grid-column-gap: 50px;
+    padding: 0 40px;
+}
+
+.carrera1{
+    position: relative;
+    grid-area: industrial;
+}
+
+.carrera2{
+    position: relative;
+    grid-area: mecatronica;
+}
+
+.carrera3{
+    position: relative;
+    grid-area: sistemas;
+}
+
+.carrera4{
+    position: relative;
+    grid-area: turismo;
+}
+
+.carrera5{
+    position: relative;
+    grid-area: psicopedagogia;
+}
+
+.carrera6{
+    position: relative;
+    grid-area: mercadotecnia;
+}
+
+.carreras img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+
+
+.containerCarrerasNombre{
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    width: 100%;
+    background: #A21E1E;
+    color: white;
+    font-family: Verdana;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.carreras > div{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .carreras{
+        margin-top:20px;
+        margin-bottom:20px;
+        display: grid;
+        grid-template-areas: "industrial mecatronica"
+            "sistemas turismo"
+            "psicopedagogia mercadotecnia";
+        width: 100%;
+        grid-row-gap: 50px;
+        grid-column-gap: 50px;
+        padding: 0 40px;
+        justify-content: center;
+
+    }
+
+    .containerCarrerasNombre{
+
+        font-size: 5px;
+
+    }
+
+    header { padding: 30px 20px; }
+    .content { width: 100vw; padding: 20px; }
+}
+
+/*Card content*/
+.cardContent{
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    background: #F8F9FA;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.cardContent .cardHeader{
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;   
+    background: #A21E1E;
+    top:0;
+    width: 100%;
+    color: white;
+    padding: 40px;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.cardContent .cardContainer{
+    padding: 20px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .cardContent .cardContainer{
+        padding: 0px;
+    }
+}
+/*Table*/
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead tr th{
+    background: #343A40;
+    color: white;
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 0px;
+}
+
+tbody tr td{
+    text-align: center;
+    padding: 20px 0px;
+}
+
+tbody tr td a{
+    text-decoration: none;
+    color:white;
+}
+
+.buttonEntity{
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+.buttonEntitysuccess{
+    background: #28A745;
+}
+
+.buttonEntityinfo{
+    background: #007BFF;
+}
+
+.buttonEntityedit{
+    background: #FFC107;
+}
+
+.buttonEntitydelete{
+    background: #DC3545;
+}
+
+.buttonEntitysuccess:hover{
+    background: #2FC150;
+}
+
+.buttonEntityinfo:hover{
+    background: #165ACB;
+}
+
+.buttonEntityedit:hover{
+    background: #F2B600;
+}
+
+.buttonEntitydelete:hover{
+    background:  #d62537;
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+/*Forms*/
+.errorField{
+    color:#DC3545;
+}
+
+.formSecretaria > div:not(.submitFormSecretaria){
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.formSecretaria > div > input[type="text"],.formSecretaria > div > input[type="email"]{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 16px;
+    font-family: Segoe UI;
+    font-style: oblique;
+}
+
+.submitFormSecretaria{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.submitFormSecretaria input{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #206AE6;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.formDocente > div:not(.submitFormDocente){
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.formDocente > div > input[type="text"],.formDocente > div > input[type="email"]{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 16px;
+    font-family: Segoe UI;
+    font-style: oblique;
+}
+
+.submitFormDocente{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.submitFormDocente input{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #206AE6;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.formAlumno > div:not(.submitFormAlumno){
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    font-family: Verdana;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.formAlumno > div > input[type="text"],.formAlumno > div > input[type="email"]{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 16px;
+    font-family: Segoe UI;
+    font-style: oblique;
+}
+
+.submitFormAlumno{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.submitFormAlumno input{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #206AE6;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.GenerarCalificaciones{
+    display: flex;
+    flex-direction: column;
+}
+
+.GenerarCalificaciones > input[type="text"]{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 16px;
+    font-family: Segoe UI;
+    font-style: oblique;
+    width: 30%;
+}
+
+.GenerarCalificaciones > div{
+    margin-top: 10%;
+    display: flex;
+    justify-content:flex-end;
+}
+
+.GenerarCalificaciones > div > .generarPDFInd{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #F60000;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+    text-decoration: none;
+    margin-left: 10px;
+
+}
+
+.GenerarCalificaciones > div > .generarPDFInd:hover{
+    background: #FF3E3E;
+    cursor: pointer;
+}
+
+/*Form grupos*/
+
+.grupoForm{
+    display: grid;    
+    grid-row-gap: 50px;
+}
+.seleccionarMateriaContainer{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.seleccionarMateriaContainer h2{
+    color: #A21E1E;
+}
+
+.seleccionarMateriaContainer input{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: none;
+}
+
+.seleccionarMateriaContainer .nombresDeMateria{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    z-index: 3;
+
+
+}
+
+.nombreDeCadaMateria{
+    padding: 10px;
+}
+.nombreDeCadaMateria:nth-child(even){background-color: #f2f2f2;}
+
+.nombreDeCadaMateria:hover{
+    cursor: pointer;
+    background: #4B95FE;
+}
+.seleccionarDocenteContainer{
+    height: 200px;
+    overflow: scroll;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+.seleccionarDocenteContainer h2{
+    color: #A21E1E;
+}
+.seleccionarDocente{
+    margin-bottom: 5px;
+}
+.seleccionarDocente:nth-child(even){background: #f2f2f2;}
+
+.horarioGrupo{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    overflow-x:auto;
+}
+.horarioGrupo h2{
+    color: #A21E1E;
+}
+
+.horarioGrupo table thead{
+    background: none;
+}
+
+.tableRowBodyHorarioGrupo{
+    padding: 20px;
+}
+.tableRowBodyHorarioGrupo div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.saveGrupoHorario{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveGrupoHorario input{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #206AE6;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.grupoInfo{
+    margin-bottom: 10px;
+}
+
+.grupoInfo h1{
+    color:#A21E1E;
+}
+/*Perfiles usuario*/
+.dataProfileContainer{
+    display: grid;
+    margin: 20px 0;
+    grid-template-columns: 280px auto;
+    grid-row-gap: 50px;
+}
+
+.dataProfileContainer div:not(.imageProfile){
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+
+
+.dataProfileContainer div:not(.imageProfile) h3{
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.dataProfileContainer .imageProfile{
+    grid-row-start: 1;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    width: auto;
+}
+
+.dataProfileContainer .imageProfile img{
+    width: auto;
+    height: 200px;
+    background: white;
+    border-radius: 25px;
+}
+
+.dataProfileEmergencia{
+    display: flex;
+}
+.dataProfileEmergencia div{
+    width: 100%;
+    flex-grow: 2;
+}
+
+.extraDataProfileContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.extraDataProfileContainer a{
+    margin-right: 10px;
+}
+
+.generatePDFProfile{
+    background-color: #FF0000;
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 5px 20px;
+}
+
+.generatePDFProfile:hover{
+    background-color: #E10000;
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 5px 20px;
+}
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+    .dataProfileContainer{
+        grid-template-columns: auto auto;
+    }
+
+    .dataProfileContainer div:not(.imageProfile) h3{
+        border-bottom: 1px solid black;
+        width: auto;
+    }
+
+    .dataProfileContainer div:not(.imageProfile) h2{
+        font-size: 15px;
+        overflow-wrap: break-word;
+    }
+
+    .dataProfileContainer div:not(.imageProfile) h3{
+        font-size: 12px;
+        overflow-wrap: break-word;
+    }
+
+}
+.añadir{
+    display: flex;
+    justify-content: flex-end; 
+    margin: 5px 0;
+}
+.añadir a{
+    background: #50AF00;
+    color:white;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-family: Segoe UI;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.añadir a img{
+    filter: invert(100%);
+}
+/*Filter*/
+.filterContainer{
+    height: auto;
+}
+
+.filterHeader{
+    border: 1px solid black;
+    display: flex;
+
+}
+
+.filterHeader:hover{
+    background: gray;
+    cursor: pointer;
+}
+
+
+.filterHeader img{
+    height: 30px;
+}
+
+.filterHeader span{
+    flex-grow: 2;
+    height: 30px;
+}
+
+
+
+.filterFormHide{
+    display:none;
+}
+.filterFormShow{
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 130px auto;
+    grid-row-gap: 30px;
+    padding-bottom: 5px;
+}
+
+.filterForm input{
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.filterForm label{
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+
+/*Horario alumno*/
+.showHorario{
+    width: 90vw;
+    margin: 10px auto;
+}
+
+.showHorario h1{
+    color: #A21E1E;
+}
+.cargarMateriasAlumno{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.cargarMateriasAlumno a{
+    display: flex;
+    background: #007BFF;
+    color:white;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.cargarMateriasAlumno a:hover{
+    background: #165ACB;
+}
+
+.cargarMateriasAlumno img{
+    filter: invert(100%);
+}
+
+.calificacionesParciales{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.calificacionesParciales a{
+    display: flex;
+    background: #28A745;
+    color:white;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.calificacionesParciales a:hover{
+    background: #2FC150;
+}
+
+.calificacionesParciales img{
+    filter: invert(100%);
+}
+
+.calificacionesParciales{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.calificacionesParciales a{
+    display: flex;
+    background: #28A745;
+    color:white;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.calificacionesParciales a:hover{
+    background: #2FC150;
+}
+
+.calificacionesParciales img{
+    filter: invert(100%);
+    margin: 3px;
+}
+
+.kardex{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.kardex a{
+    display: flex;
+    background: #8D08F7;
+    color:white;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.kardex a:hover{
+    background: #A53EF9;
+}
+
+.kardex img{
+    filter: invert(100%);
+    margin: 3px;
+}
+
+.editarMateriasAlumno{
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+}
+
+.editarMateriasAlumno a{
+    display: flex;
+    background: #FFC107;
+    color:white;
+    align-items: center;
+    border-radius: 15px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.editarMateriasAlumno a:hover{
+    background: #F2B600;
+}
+
+.editarMateriasAlumno img{
+    filter: invert(100%);
+}
+/*Carga materias alumno*/
+.cargaMateriasAlumnoContainer{
+    display: grid;
+    grid-column-gap:15px;
+}
+
+
+.materiasCargaSelect{
+    grid-area: 1/1/3/1;
+}
+
+.materiasCargaSelect div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.materiasCargaSelect div div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.materiasCargaSelect div div a{
+    text-decoration: none;
+    background: #007BFF;
+    color:white;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 2px 5px;
+}
+
+.materiasCargaSelect div div a:hover{
+    background: #165ACB;
+}
+
+.materiasCargaSelect div div span{
+}
+
+.materiasCargaSelect div div:nth-child(even){background-color: #f2f2f2;}
+
+
+.materiasCargaSelect h1{
+    color:#A21E1E;
+}
+
+.listAlumnoMaterias{
+    grid-area: 1/2/3/2;
+}
+
+.saveGrupoAlumno{
+    grid-area: 3/1/3/3;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.saveGrupoAlumno a{
+    background: #007BFF;
+    color:white;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 5px;
+}
+
+.saveGrupoAlumno a:hover{
+    background: #165ACB;
+}
+
+/*Grupo info carga*/
+.grupoInfoCarga{
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.guardarCargadegrupo{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top:10px;
+}
+
+.guardarCargadegrupo input{
+    background: #007BFF;
+    color:white;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 5px;
+    border: none;
+}
+
+.guardarCargadegrupo input:hover{
+    background: #165ACB;
+    cursor: pointer;
+}
+
+.grupoAlumnomateriaInfo{
+    width: 100px;
+    white-space: pre-wrap; /* css-3 */    
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */    
+    white-space: -o-pre-wrap; /* Opera 7 */    
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    padding: 10px;
+    border-radius: 10px;
+    background: #007BFF;
+}
+
+.showAlumnosGrupo{
+    width: 90vw;
+    margin: 10px auto;
+}
+
+.showAlumnosGrupo h1{
+    color: #A21E1E;
+}
+
+.buttonCalificaciones{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    padding-top:10px; 
+}
+
+.saveCalificaciones{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveCalificaciones input{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #206AE6;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.kardexSelect{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.kardexSelect *{
+    margin-top: 5px;
+}
+
+.kardexSelect select{
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.justificanteContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.justificanteContainer label{
+    font-weight: bold;
+}
+
+.justificanteContainer > *{
+    padding-bottom: 30px;
+}
+
+.justificanteContainer > .alumnoData{
+    display: flex;
+    flex-direction: column;
+}
+
+.justificanteContainer > .alumnoData > input{
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 16px;
+    font-family: Segoe UI;
+    font-style: oblique;
+    width: 100%;
+}
+
+.fechaData{
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+}
+
+
+.fechaData > h1{
+    margin: 0 10px;
+
+}
+.fechaData > div{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.motivoData{
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    width: 400px;
+}
+
+.saveJustificante{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveJustificante input{
+    border-radius: 20px;
+    padding: 5px 25px;
+    background: #F60000;
+    font-family: Segoe UI;
+    font-size: 18px;
+    color: white;
+    border: none;
+}
+
+.saveJustificante input:hover{
+    background: #FF3E3E;
+    cursor:pointer;
+}
+
+.loginForm{
+    padding: 0 30%;
+
+}
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-field{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
+}
+
+.icon {
+    padding: 10px;
+    background: #A21E1E;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.iconbtn {
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+.btn {
+    height: auto;
+    background-color: #A21E1E;
+    border-radius: 20px;
+    font-size: 20px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+.buttonAthenticationInfo{
+    border: 0;
+    background-color: #A21E1E;
+    overflow-wrap: break-word;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px 0px #ccc;
+}
+
+.buttonAthenticationInfo:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.buttonAthenticationInfo span{
+    font-family: Swis721 BT;
+    font-weight: bold;
+    font-size: 18px;
+    color:black;
+    text-shadow: none;
+    color: white;
+}
+
+.buttonAthenticationInfo i{
+    min-width: 20px;
+    text-align: center;
+    color: white;
+}
+
+.buttonAthenticationInfo ul li{
+    color: white;
+}
+
+.listAuthInfo{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: white;
+    margin-right: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 15px 15px 0px black;
+    z-index: 20;
+
+}
+
+.listAuthInfoDisable{
+    display: none;
+}
+.listAuthInfo li{
+    height: 40px;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.listAuthInfo li:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.listAuthInfo li:nth-child(even){background-color: #f2f2f2;}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class="cargaMateriasAlumnoContainer">
+                        <div class="materiasCargaSelect">
+                            <h1>Materias disponibles a cargar:</h1>
+                            <div style="overflow-x: auto">
+                                <div th:each="materia : ${materiasACargar}">
+                                    <div>
+                                        <span th:text="${materia.nombre}"></span>
+                                        <a th:href="@{'/gruposAlumno/formList/' + ${alumno.numeroDeControl} + '/' + ${materia.codigoMateria}}">Cargar &raquo;</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="overflow-x: auto" class="listAlumnoMaterias">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Materia</th>
+                                        <th>Grupo</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miercoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="grupoAlumno : ${gruposAlumnoCargados}">
+                                        <td ><div class="grupoAlumnomateriaInfo"><a th:href="@{'/grupos/ver/' + ${grupoAlumno.grupo.codigoGrupo}}"th:text="${grupoAlumno.grupo.materia.nombre}"></a></div></td>
+                                        <td th:text="${grupoAlumno.grupo.numeroGrupo}"></td>
+                                        <td th:each="horario : ${grupoAlumno.grupo.horariosDeGrupo}" th:text="${not #strings.isEmpty(horario.horaInicia) ? horario.horaInicia + ' - ' + horario.horaFinal + ' : ' + horario.salon : ''}"></td>
+                                        <td><a th:href="@{'/gruposAlumno/eliminar/' + ${grupoAlumno.codigoGrupoAlumno}}" class="buttonEntity buttonEntitydelete">Eliminar</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="saveGrupoAlumno">
+                            <a id="saveGrupoAlumno"  th:href="@{'/alumnos/ver/' + ${alumno.numeroDeControl}}">Guardar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

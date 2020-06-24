@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity">
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+
+            <div class="carrousel" id="carrousel">
+                <div class="imageHandler" sec:authorize="hasAnyRole('ROLE_JEFE','ROLE_SECRETARIA')">
+                    <form th:action="@{/uploadImageCarrousel}" method="post" enctype="multipart/form-data">
+                        <label class="uploadFotoCarrousel"><input accept="image/*" type="file" name="file" onchange="this.form.submit()"/><img th:src="@{/img/upload.png}" style="width: 14px;height: 14px;margin-right: 4px;"><span>Subir una foto</span></label>
+                    </form>
+                    <form th:action="@{/deleteImageCarrousel}" method="post" th:if="not ${#lists.isEmpty(carruselImagenes)}" id="deleteFotoCarrousel">
+                        <input type="text" id="numberImage" name="numberImage" style="visibility:hidden; width: 0; height: 0; margin: 0; border: 0;"/> 
+                        <input  type="button" value="x" class="deleteFotoCarrousel" />
+                    </form>
+                </div>
+                <div th:if="${#lists.isEmpty(carruselImagenes)}">
+                    <img loading="lazy" name="carrouselImage" th:src="@{/img/carrusel/1.png}"/>
+                    <img loading="lazy" name="carrouselImage" th:src="@{/img/carrusel/2.png}"/>
+                    <img loading="lazy" name="carrouselImage" th:src="@{/img/carrusel/3.png}"/>
+                </div>
+                <img loading="lazy" th:each="img : ${carruselImagenes}" name="carrouselImage" th:src="@{'/UsersUploads/' + ${img}}"/>
+                <div class="buttonsCarrousel" id="buttonsCarrousel">
+                </div>
+            </div>
+
+            <div class="carreras">
+                <div class="carrera1">
+                    <img loading="lazy" th:src="@{/img/carreras/industrial.jpg}"/>
+                    <div class="containerCarrerasNombre"><h1>ING. INDUSTRIAL</h1></div>
+                </div>
+
+                <div class="carrera2">
+                    <img loading="lazy" th:src="@{/img/carreras/mecatronica.jpg}"/>
+                    <div class="containerCarrerasNombre"><h1>ING. MERCATRONICA</h1></div>
+                </div>
+
+                <div class="carrera3">
+                    <img loading="lazy" th:src="@{/img/carreras/sistemas.jpg}"/>
+                    <div class="containerCarrerasNombre"><h1>ING. SISTEMAS COMPUTACIONALES</h1></div>
+                </div>
+
+                <div class="carrera4">
+                    <img loading="lazy" th:src="@{/img/carreras/turismo.jpg}"/>
+                    <div class="containerCarrerasNombre">
+                        <h1>LIC. EN TURISMO</h1>
+                    </div>
+                </div>
+
+                <div class="carrera5">
+                    <img loading="lazy" th:src="@{/img/carreras/psicopedagogia.jpg}"/>
+                    <div class="containerCarrerasNombre"><h1>LIC. EN PSICOPEDAGOGIA</h1></div>
+                </div>
+
+                <div class="carrera6">
+                    <img loading="lazy" th:src="@{/img/carreras/mercadotecnia.jpg}"/>
+                    <div class="containerCarrerasNombre"><h1>LIC. EN MERCADOTECNIA</h1></div>
+                </div>
+
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

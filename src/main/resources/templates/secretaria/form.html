@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <form th:action="@{/secretarias/form/}" th:object="${secretaria}" method="post" class="formSecretaria" id="formSecretaria" >
+                        <div >
+                            <label>Numero de control:</label>
+                            <input type="text" th:field="*{numeroDeControl}" id="numeroDeControl" readonly/>
+                            <small th:text="${numeroDeControlError}" th:class="${errorField}"></small>
+                        </div>
+
+                        <div th:if="${not #strings.isEmpty(secretaria.contrasena)}">
+                            <label>Contraseña:</label>
+                            <input type="text" th:field="*{contraseña}" id="contraseña" readonly/>
+                            <small th:text="${contrasenaError}" th:class="${errorField}"></small>
+                        </div>
+
+                        <div>
+                            <label>Nombre:</label>
+                            <input id="nombre" type="text" th:field="*{nombre}" th:maxlength="50"/>
+                            <small id="nombreError" th:text="${nombreError}" th:class="${errorField}"></small>
+                        </div>
+
+                        <div>
+                            <label>Apellido:</label>
+                            <input id="apellido" type="text" th:field="*{apellido}" th:maxlength="50"/>
+                            <small id="apellidoError" th:text="${apellidoError}" th:class="${errorField}"></small>
+                        </div>
+
+                        <div>
+                            <label>Telefono:</label>
+                            <input id="telefono" type="text" th:field="*{telefono}" th:maxlength="12"/>
+                            <small id="telefonoError" th:text="${telefonoError}" th:class="${errorField}"></small>
+                        </div>
+
+                        <div>
+                            <label>Correo electronico:</label>
+                            <input id="correoElectronico" type="email" th:field="*{correoElectronico}"/>
+                            <small id="correoElectronicoError" th:text="${correoElectronicoError}" th:class="${errorField}"></small>
+                        </div>
+
+                        <div>
+                            <label>Carrera:</label>
+                            <input type="text" name="codigoCarrera" th:field="${carrera.codigoCarrera}" th:value="${carrera.codigoCarrera}" id="carrera" readonly>
+                        </div>
+
+                        <div class="submitFormSecretaria">
+                            <input  type="button" value="Añadir" id="submitFormSecretaria"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

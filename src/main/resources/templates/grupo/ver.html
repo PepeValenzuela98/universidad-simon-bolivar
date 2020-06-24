@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class='grupoInfo'>
+                        <h1>Materia:</h1>
+                        <div>
+                            <h3>Nombre: <span th:text="${grupo.materia.nombre}"></span></h3>
+                            <h3>Semestre: <span th:text="${'°'+grupo.materia.semestre}"></span></h3>
+                            <h3>Unidades: <span th:text="${grupo.materia.numeroUnidades}"></span></h3>
+                        </div>
+                    </div>
+                    <div class='grupoInfo'>
+                        <h1>Docente:</h1>
+                        <div>
+                            <h3>Nombre: <span th:text="${grupo.docente.nombre} + ' ' + ${grupo.docente.apellido}"></span></h3>
+                        </div>
+                    </div>
+
+                    <div class='grupoInfo'>
+                        <h1>Horario:</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Lunes</th>
+                                    <th>Martes</th>
+                                    <th>Miercoles</th>
+                                    <th>Jueves</th>
+                                    <th>Viernes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td th:each="hora, itemStat: ${horariosGrupo.horarios}">
+                                        <h3 th:text="${#strings.isEmpty(hora.horaInicio) ? '' : hora.horaInicio + ' - ' + hora.horaFin + ' : ' + hora.salon}" ></h3>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div class="showAlumnosGrupo">
+                <h1 th:if="${#lists.isEmpty(grupoAlumnos)}">No hay alumnos registrados en este grupo</h1>
+                <div th:if="${not #lists.isEmpty(grupoAlumnos)}"style="overflow-x: auto">
+                    <h1>Alumnos:</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Numero de control</th>
+                                <th>Nombre</th>
+                                <th>Semestre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="grupoAlumnos : ${grupoAlumnos}">
+                                <td th:text="${grupoAlumnos.alumno.numeroDeControl}"></td>
+                                <td th:text="${grupoAlumnos.alumno.nombre + ' ' + grupoAlumnos.alumno.apellido}"></td>
+                                <td th:text="${'°' + grupoAlumnos.alumno.semestre}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="buttonCalificaciones" th:if="${not #lists.isEmpty(grupoAlumnos)}" sec:authorize="hasRole('ROLE_DOCENTE')">
+                    <a th:href="@{'/calificacionesParciales/listar/' + ${grupo.codigoGrupo}}" class="buttonEntity buttonEntitysuccess" style='text-decoration: none; color:white;'>Subir calificaciones</a>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

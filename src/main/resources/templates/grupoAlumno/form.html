@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <form method="post" th:action="@{/gruposAlumno/formList}">
+                        <input type="hidden" name="numeroDeControlAlumno" th:value="${alumno.numeroDeControl}"/>
+                        <h1 th:if="${#lists.isEmpty(grupos)}">No hay grupos cargados para esta materia</h1>
+                        <div th:each="grupo : ${grupos}" th:if="${not #lists.isEmpty(grupos)}">
+                            <input type="radio" name="codigoGrupo" th:value="${grupo.codigoGrupo}">
+                            <label for="grupo" th:text="'Grupo: ' + ${grupo.numeroGrupo}"></label>
+                            <div class='grupoInfoCarga'>
+                                <h2 th:text="'Docente: ' + ${grupo.docente.nombre} + ' ' + ${grupo.docente.apellido}"></h2>
+                                <h2>Horario:</h2>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Lunes</th>
+                                            <th>Martes</th>
+                                            <th>Miercoles</th>
+                                            <th>Jueves</th>
+                                            <th>Viernes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td th:each="hora :  ${grupo.horariosDeGrupo}">
+                                                <h3 th:text="${#strings.isEmpty(hora.horaInicia) ? '' : hora.horaInicia + ' - ' + hora.horaFinal + ' : ' + hora.salon}" ></h3>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="guardarCargadegrupo" th:if="${not #lists.isEmpty(grupos)}"><input  type="submit" value="Guardar"/></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

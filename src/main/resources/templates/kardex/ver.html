@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <h1 th:if="${semestresCursados == 0}">No hay ningun registro en el kardex</h1>
+
+                    <div th:if="${semestresCursados != 0}" class="kardexSelect">
+                        <h3>Seleccione el semestre:</h3>
+                        <input type="hidden" th:value="${numeroDeControlAlumno}"  id="numeroDeControlAlumno">
+                        <select  id="selectKardex">
+                            <option value="*">Todos los semestres</option>
+                            <option th:each="semestre : ${#numbers.sequence(1,semestresCursados,1)}" th:text="'°' + ${semestre}" th:value="${semestre}"></option>
+                        </select>
+                        <button id="buscarKardex">Buscar</button>
+                    </div>
+
+                    <div class="showKardex" id="showKardex">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

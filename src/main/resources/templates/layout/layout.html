@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/springsecurity">
+    <head th:fragment="head">
+        <title th:text="'Universidad Simon Bolivar - ' + ${titulo}"></title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" th:href="@{/img/favicon.png}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert2.min.css}"/>
+        <link rel="shortcut icon" th:href="@{/img/favicon.png}" />
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" th:href="@{/fontawesome/css/font-awesome.min.css}"> 
+    </head>
+    <body>
+        <header th:fragment="header">
+            <div class="headerContainer">
+                <div class="logo"><a th:href="@{/}" class="logo"><img loading="lazy" th:src="@{/img/Logo.svg}"/></a></div> 
+                <div class="menuMobile" id="menuMobile">
+                    <img loading="lazy" class="imgmenuMobile"src="https://img.icons8.com/ios-filled/100/000000/menu.png"/>
+                </div>
+                <ul id="opciones" class="slideUp">
+                    <li><a th:href="@{/}">INICIO</a></li>
+                    <li sec:authorize="hasRole('ROLE_JEFE')"><a th:href="@{/alumnos/listar}">ALUMNOS</a></li>
+                    <li sec:authorize="hasRole('ROLE_JEFE')"><a th:href="@{/docentes/listar}">DOCENTES</a></li>
+                    <li sec:authorize="hasRole('ROLE_JEFE')"><a th:href="@{/secretarias/listar}">SECRETARIAS</a></li>
+                    <li id="generar" sec:authorize="hasAnyRole('ROLE_JEFE','ROLE_SECRETARIA')">
+                        <a class="generar" >GENERAR</a>
+                        <div class="generarContentOut" id="generarContent">
+                            <ul class="generarList" >
+                                <li><a th:href="@{/generar/calificaciones}" class="generarLink">Calificaciones</a></li>
+                                <li><a th:href="@{/generar/horarios}" class="generarLink">Horarios</a></li>
+                                <li><a th:href="@{/generar/justificante}" class="generarLink">Justificantes</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_JEFE')"><a th:href="@{/grupos/listar}">GRUPOS</a></li>
+                    <li class="verticalChildHeader"><div class="verticalLineHeader"/></li>
+                    <li class="buttonLogin" sec:authorize="not isAuthenticated()"><a  class ="buttonLoginText" th:href="@{/login}" >Iniciar Sesion</a></li>
+                    <li class="buttonLogin" sec:authorize="isAuthenticated()">
+                        <div class="buttonAthenticationInfo" id="buttonAuth">
+                            <span th:text="${#authentication.getPrincipal().getNombreCompleto()}"></span> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </div>
+                        <ul class="listAuthInfoDisable" id="listAuth">
+                            <li sec:authorize="hasRole('ROLE_ALUMNO')"><a th:href="@{'/alumnos/ver/' + ${#authentication.getPrincipal().getUsername()}}" class="linkInfoUser">Informacion personal</a></li>
+                            <li sec:authorize="hasRole('ROLE_SECRETARIA')"><a th:href="@{'/secretarias/ver/' + ${#authentication.getPrincipal().getUsername()}}" class="linkInfoUser">Informacion personal</a></li>
+                            <li sec:authorize="hasRole('ROLE_DOCENTE')"><a th:href="@{'/docentes/ver/' + ${#authentication.getPrincipal().getUsername()}}"class="linkInfoUser">Informacion personal</a></li>
+                            <li sec:authorize="hasRole('ROLE_JEFE')"><a href="#" class="linkInfoUser">Informacion personal</a></li>
+                            <li>
+                                <form id="logoutForm" th:action="@{/logout}" method="post">
+                                    <span onclick="document.getElementById('logoutForm').submit();" type="submit">Cerrar sesion</span>
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+            <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+            <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+            <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+        </header>
+        <footer th:fragment="footer">
+            <div class="footerContent">
+                <div class="contacto">
+                    <h2>Contacto</h2>
+                    <ul>
+                        <li><img loading="lazy" th:src="@{/img/pin.png}"/> <span>Av. Río Mixcoac Nº 48, Col.
+                                <br>Insurgentes, Mixcoac, C.P. 
+                                <br>03920, Benito Juárez, CDMX</span></li>
+                        <li><img loading="lazy" th:src="@{/img/phone.png}"/> <span>(55) 5629-9700</span></li>
+                        <li><img loading="lazy" th:src="@{/img/email.png}"/> <span>admisiones@usb.edu.mx</span></li>           
+                    </ul>
+                </div>
+                <div class="verticalLineFooter"></div>
+                <div class="siguenos">
+                    <h2>Siguenos</h2>
+                    <ul>
+                        <li><a href="#"><img loading="lazy" th:src="@{/img/twitter.png}"/></a></li>
+                        <li><a href="#"><img loading="lazy" th:src="@{/img/facebook.png}"/></a></li>
+                        <li><a href="#"><img loading="lazy" th:src="@{/img/instagram.png}"/></a></li>           
+                    </ul>
+                </div>
+            </div>
+
+            <script th:src="@{/js/sweetalert2.min.js}"></script>
+            <script th:src="@{/js/JSMain.js}" th:inline="javascript" type="module"></script>
+        </footer>
+    </body>
+</html>

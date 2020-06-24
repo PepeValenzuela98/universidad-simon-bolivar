@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <form th:action="@{/login}" method="post" class="loginForm">
+                        <div class="input-container">
+                            <i class="fa fa-user icon"></i>
+                            <input class="input-field" type="text" name="username" placeholder="Numero de control"/>
+                        </div>
+                        <div class="input-container">
+                            <i class="fa fa-key icon" aria-hidden="true"></i>
+                            <input class="input-field " type="password" name="password" placeholder="Contraseña"/>
+                        </div>
+                        <div class="button-container">
+
+                            <button type="submit" class="btn">Iniciar sesion<i class="fa fa-sign-in iconbtn" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

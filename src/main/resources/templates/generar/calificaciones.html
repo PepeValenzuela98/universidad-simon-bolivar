@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class="GenerarCalificaciones" id="generarBoletaForm">
+                        <label>Numero de control:</label>
+                        <input type="text" id="numeroDeControlAlumno"/>
+                        <small class="errorField" id="errorField"></small>
+                        <div>
+                            <a class="generarPDFInd" th:href="@{'/calificacionesParciales/verPorCarrera/ISC'+${#authentication.getPrincipal().getCodigoCarrera()}(format=pdf)}">Generar calificaciones por carrera</a>
+                            <a type="button" class="generarPDFInd" id="generarPDFInd" th:href="@{/calificacionesParciales/ver/$(format=pdf)}"/>Generar calificaciones individual</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

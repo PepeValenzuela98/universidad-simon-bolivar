@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class="dataProfileContainer">
+                        <div class="imageProfile">
+                            <img loading="lazy" alt="IMAGEN NO DISPONIBLE" th:src="@{/img/userdefaultimage.png}" class="imageProfile"/>
+                        </div>
+                        <div>
+                            <h2>Numero de control:</h2>
+                            <h3 th:text="${alumno.numeroDeControl}"></h3>
+                        </div>
+                        <div>
+                            <h2>Nombre:</h2>
+                            <h3 th:text="${alumno.nombre} + ' ' + ${alumno.apellido}"></h3>
+                        </div>
+                        <div>
+                            <h2>Telefono:</h2>
+                            <h3 th:text="${alumno.telefono}"></h3>
+                        </div>
+                        <div>
+                            <h2>Correo electronico:</h2>
+                            <h3 th:text="${alumno.correoElectronico}"></h3>
+                        </div>
+                        <div>
+                            <h2>Carrera:</h2>
+                            <h3 th:text="${alumno.carrera.nombre}"></h3>
+                        </div>
+
+                        <div>
+                            <h2>Semestre actual:</h2>
+                            <h3 th:text="${alumno.semestre}"></h3>
+                        </div>
+
+                        <div>
+                            <h2>Contacto emergencia:</h2>
+                        </div>
+                        <div  class="dataProfileEmergencia">
+                            <div>
+                                <h2>Nombre:</h2>
+                                <h3 th:text="${alumno.nombreEmergencia} + ' ' + ${alumno.apellidoEmergencia}"></h3>
+                            </div>
+
+                            <div>
+                                <h2>Telefono:</h2>
+                                <h3 th:text="${alumno.telefonoEmergencia}"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="extraDataProfileContainer" sec:authorize="hasRole('ROLE_JEFE')">
+                    <a href="#">Cambiar contraseña</a>
+                    <a class="generatePDFProfile" href="#">PDF </a>
+                </div>
+            </div>
+            <div class="showHorario">
+                <h1 th:if="${#lists.isEmpty(gruposAlumno)}">No hay materias cargadas</h1>
+                <div style="overflow-x:auto;" th:if="${not #lists.isEmpty(gruposAlumno)}">
+                    <h1>Horario:</h1>    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Grupo</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miercoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="grupoAlumno : ${gruposAlumno}">
+                                <td><a class="buttonEntity buttonEntityinfo" th:href="@{'/grupos/ver/' + ${grupoAlumno.grupo.codigoGrupo}}"th:text="${grupoAlumno.grupo.materia.nombre}"></a></td>
+                                <td th:text="${grupoAlumno.grupo.numeroGrupo}"></td>
+                                <td th:each="horario : ${grupoAlumno.grupo.horariosDeGrupo}" th:text="${not #strings.isEmpty(horario.horaInicia) ? horario.horaInicia + ' - ' + horario.horaFinal + ' : ' + horario.salon : ''}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cargarMateriasAlumno" sec:authorize="hasRole('ROLE_JEFE')"><a  th:href="@{'/gruposAlumno/formList/' + ${alumno.numeroDeControl}}"><img loading="lazy" th:src="@{/img/schedule.png}"/>Cargar materias</a></div>
+
+                <div class="calificacionesParciales" th:if="${not #lists.isEmpty(gruposAlumno)}"><a  th:href="@{'/calificacionesParciales/ver/' + ${alumno.numeroDeControl}}"><img loading="lazy" th:src="@{/img/calificacionparcial.png}"/>Calificaciones parciales</a></div>
+
+                <div class="kardex"><a  th:href="@{'/kardex/ver/' + ${alumno.numeroDeControl}}"><img loading="lazy" th:src="@{/img/kardex.png}"/>Kardex</a></div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

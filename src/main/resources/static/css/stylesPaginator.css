@@ -1,0 +1,46 @@
+.paginatorContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.paginator{
+    background: white;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #666;
+    border-radius: 5px;
+    font-size: 22px;
+}
+
+.paginator li{
+    list-style: none;
+    padding: 0 10px;
+
+}
+
+.paginator li:not(.primero){
+    border-left: 1px solid #666;
+}
+
+.paginator li a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.active{
+    color: #308BFA;
+}
+
+.disable{
+    color: #808080;
+}
+
+
+@media only screen and (max-width: 400px){
+    .paginator{
+        font-size: 15px;
+    }
+}

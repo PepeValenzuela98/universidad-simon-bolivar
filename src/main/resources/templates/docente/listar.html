@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+                <link rel="stylesheet" type="text/css" th:href="@{/css/stylesPaginator.css}"/>
+
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div class="añadir">
+                        <a th:href="@{/docentes/form}"><img loading="lazy" th:src="@{/img/addteacher.png}"/>Añadir docente</a>
+                    </div>
+                    <div class="filterHeader" id="filterHeader">
+                        <img loading="lazy" class="filterIcon" th:src="@{/img/filter.png}"/>
+                        <span>Filtrar</span>
+                        <img loading="lazy" class="arrowFilterIcon" id="arrowFilterIcon" src="https://img.icons8.com/ios-filled/50/000000/down-squared--v1.png"/>
+                    </div>
+                    <div class="filterContainer">
+                        <form class="filterFormHide" id="filterForm" th:object="${docenteFiltro}" th:action="@{/docentes/filtro/}" method="get">
+                            <label for="numerodecontrolFilter" >Numero de control:</label>
+                            <input type="text" name="numeroControlFilterValue" th:field="*{numeroDeControl}">
+                            <input type="submit" value="Filtrar">
+                            <a th:if="${not #strings.isEmpty(docenteFiltro.numeroDeControl)}" th:href="@{/docentes/listar}">Quitar filtro</a>
+                        </form>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Numero de control</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Correo electronico</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="docente : ${docentes}">
+                                    <td><a class="buttonEntity buttonEntityinfo" th:href="@{'/docentes/ver/' + ${docente.numeroDeControl}}" th:text="${docente.numeroDeControl}"></a></td> 
+                                    <td th:text="${docente.nombre} + ' '  + ${docente.apellido}"></td>
+                                    <td th:text="${docente.telefono}" id="telefono"></td> 
+                                    <td th:text="${docente.correoElectronico}"></td> 
+                                    <td><a class="buttonEntity buttonEntityedit" th:href="@{'/docentes/form/' + ${docente.numeroDeControl}}">Editar</a></td> 
+                                    <td><a  class="buttonEntity buttonEntitydelete" th:href="@{'/docentes/eliminar/' + ${docente.numeroDeControl}}">Eliminar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <nav  th:replace="layout/nav-paginator :: paginator"></nav>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

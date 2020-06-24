@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Materia</th>
+                                    <th th:each="unidad : ${#numbers.sequence(1,unidadesMaximo,1)}" th:text="${'Unidad ' + unidad}"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="calificacion : ${calificacionesWrapper.calificaciones}">
+                                    <td th:text="${calificacion.nombreMateria}"></td>
+                                    <td th:each="calificacionPorUnidad : ${calificacion.calificacionesPorUnidad}" th:text="${calificacionPorUnidad.calificacion}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+
+    </body>
+</html>

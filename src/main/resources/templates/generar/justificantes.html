@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <form th:action="@{/generar/justificante(format=pdf)}" method="post" th:object="${justificante}" class="justificanteContainer" id="justificanteForm">
+                        <div class="alumnoData">
+                            <label>Numero de control:</label>
+                            <input th:field="*{alumno.numeroDeControl}" type="text" id="numeroDeControlAlumno"/>
+                            <small class="errorField" id="numeroDeControlError"></small>
+                        </div>
+                        <label>Detalles de justificante:</label>
+                        <div class="fechaData">
+                            <div>
+                                <label>Fecha inicial:</label>
+                                <input type="date" th:field="*{fechaInicioValida}" id="fechaInicio"/>
+                                <small class="errorField" id="fechaValidaError"></small>
+                            </div>
+                            <h1>-</h1>
+                            <div>
+                                <label>Fecha final:</label>
+                                <input type="date" th:field="*{fechaFinValida}" id="fechaFin"/>
+                            </div>
+                        </div>
+                        <div class="motivoData">
+                            <label>Motivo:</label>
+                            <select th:field="*{motivo}">
+                                <option value="" disabled selected>Selecciona el motivo del justificante</option>
+                                <option value="SALUD">Salud</option>
+                                <option value="DILIGENCIA">Diligencia</option>
+                            </select>
+                        </div>
+                        <div class="saveJustificante">
+                            <input id="saveJustificante" type="button" value="Guardar y generar PDF"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>

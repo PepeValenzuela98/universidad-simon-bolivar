@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+        <div class="content">
+            <div class="cardContent">
+                <div class="cardHeader" th:text="${tituloCard}"></div>
+                <div class="cardContainer">
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Numero de control</th>
+                                    <th>Carrera</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Editar</th>
+                                    <th>Remplazar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="carrera : ${carreras}">
+                                    <td><a th:href="@{'/secretarias/ver/' + ${carrera.secretaria.numeroDeControl}}" class="buttonEntity buttonEntityinfo" th:text="${carrera.secretaria.numeroDeControl}"></a></td> 
+                                    <td th:text="${carrera.nombre}"></td>
+                                    <td th:text="${carrera.secretaria.nombre} +' ' + ${carrera.secretaria.apellido}"></td> 
+                                    <td th:text="${carrera.secretaria.telefono}" id="telefono"></td> 
+                                    <td th:text="${carrera.secretaria.correoElectronico}"></td> 
+                                    <td><a th:href="@{'/secretarias/form/' + ${carrera.codigoCarrera}} + '/' + ${carrera.secretaria.numeroDeControl}"class="buttonEntity buttonEntityedit"  href="#">Editar</a></td> 
+                                    <td><a th:href="@{'/secretarias/form/' + ${carrera.codigoCarrera}}" class="buttonEntity buttonEntitydelete">Remplazar</a></td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>
