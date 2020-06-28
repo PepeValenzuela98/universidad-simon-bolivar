@@ -10,6 +10,7 @@ import com.jaevsoftware.USB.model.entity.wrapper.ListCalificacionParcialWrapper;
 import com.jaevsoftware.USB.util.BoletaTemplatePDF;
 import com.lowagie.text.Document;
 import com.lowagie.text.pdf.PdfWriter;
+import java.util.Iterator;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.document.AbstractPdfView;
+import com.jaevsoftware.USB.model.entity.wrapper.CalificacionParcialWrapper;
 
 @Component("/calificacionParcial/ver.pdf")
 public class BoletaIndividualPdfView extends AbstractPdfView {
@@ -29,9 +31,11 @@ public class BoletaIndividualPdfView extends AbstractPdfView {
         Integer unidadesMaximo = (Integer) model.get("unidadesMaximo");
         ListCalificacionParcialWrapper listCalificacionesWrapper = (ListCalificacionParcialWrapper) model.get("calificacionesWrapper");
 
+    
+
 //        response.addHeader("Content-Disposition", "attachment; filename=Boleta de calificaciones de " + alumno.getNombre() + " " + alumno.getApellido() + " - USB.pdf");
         document.addTitle("Boleta de calificaciones de " + alumno.getNombre() + " " + alumno.getApellido() + " - USB");
-        
+
         BoletaTemplatePDF boletaTemplatePdf = new BoletaTemplatePDF();
         boletaTemplatePdf.setAlumno(alumno);
         boletaTemplatePdf.setUnidadesMaximo(unidadesMaximo);

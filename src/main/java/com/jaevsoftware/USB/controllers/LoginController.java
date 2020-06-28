@@ -25,7 +25,7 @@ public class LoginController {
         model.addAttribute("tituloCard", "Iniciar sesion");
         if (principal != null) {
             log.info(principal.getName());
-            flash.addFlashAttribute("warning", "Usted ya ah iniciado sesion");
+            flash.addFlashAttribute("warning", "Usted ya ha iniciado sesion");
             return "redirect:/";
         }
         if (error != null) {

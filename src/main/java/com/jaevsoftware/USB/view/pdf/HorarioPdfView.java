@@ -42,7 +42,7 @@ public class HorarioPdfView extends AbstractPdfView {
         Paragraph nombreAlumno = new Paragraph("Nombre del alumno:" + alumno.getNombre() + " " + alumno.getApellido());
         nombreAlumno.setSpacingAfter(10);
         document.add(nombreAlumno);
-        Paragraph semestre = new Paragraph("Semestre:°" + alumno.getSemestre());
+        Paragraph semestre = new Paragraph("Semestre:" + alumno.getSemestre()+"°");
         semestre.setSpacingAfter(10);
         document.add(semestre);
 

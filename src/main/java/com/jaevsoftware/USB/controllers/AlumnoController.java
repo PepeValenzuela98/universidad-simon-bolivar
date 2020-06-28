@@ -160,7 +160,7 @@ public class AlumnoController {
         }
         alumnoService.save(alumno);
         status.setComplete();
-        flash.addFlashAttribute("success", "Se ah guardado el alumno con exito");
+        flash.addFlashAttribute("success", "Se ha guardado el alumno con exito");
         return "redirect:/alumnos/listar";
     }
 

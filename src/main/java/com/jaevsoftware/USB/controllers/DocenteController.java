@@ -135,7 +135,7 @@ public class DocenteController {
         }
         docenteService.save(docente);
         status.setComplete();
-        flash.addFlashAttribute("success", "Se ah guardado el docente con exito");
+        flash.addFlashAttribute("success", "Se ha guardado el docente con exito");
         return "redirect:/docentes/listar";
     }
 

@@ -196,7 +196,7 @@ public class GrupoController {
             return "/grupo/form";
         }
 
-        flash.addFlashAttribute("success", "El grupo se ah guardado con exito");
+        flash.addFlashAttribute("success", "El grupo se ha guardado con exito");
         return "redirect:/grupos/listar";
     }
 
