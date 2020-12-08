@@ -32,7 +32,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         String mensaje = "Bienvenido "+user.getNombreCompleto();
         flashMap.put("success",mensaje);
-
+        
         flashMapManager.saveOutputFlashMap(flashMap, request, response);
 
         super.onAuthenticationSuccess(request, response, authentication); //To change body of generated methods, choose Tools | Templates.
